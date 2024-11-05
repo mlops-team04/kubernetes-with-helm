@@ -1,0 +1,24 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: my-metallb-config
+  namespace: mymetallb
+spec:
+  addresses:
+  - 172.31.217.210-172.31.217.220
+  autoAssign: true
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: my-metallb-config
+  namespace: mymetallb
+spec:
+  ipAddressPools:
+  - my-metallb-config
+  nodeSelectors:
+  - matchLabels:
+      kubernetes.io/hostname: mlteam1
+  - matchLabels:
+      kubernetes.io/hostname: mlteam2    

@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-server-ingress
+  namespace: default
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: fastapi.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: fast-api-webservice
+                port: 
+                  number: 8000
+    - host: streamlit.example.com 
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend: 
+              service:
+                name: streamlit-api-webservice
+                port: 
+                  number: 8501
+  ingressClassName: nginx

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myclient1
+  labels:
+    app: myclient
+spec:
+  nodeName: mlteam1
+  containers:
+  - name: myclient1-c
+    image: bitnami/kafka:3.2
+    command: ["tail"]
+    args: ["-f", "/dev/null"]
